@@ -1,8 +1,5 @@
-import { Carta } from "./carta.js";
+import { Carta } from "./Carta.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    cargarCartas();
-});
 
 async function cargarCartas() {
     const listaCarta = [];
@@ -45,3 +42,7 @@ async function cargarCartas() {
         alert("Ocurrio un error: " + error.message);
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarCartas();
+});

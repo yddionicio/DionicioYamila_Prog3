@@ -1,4 +1,4 @@
-class Carta {
+export class Carta {
     constructor(code, value, suit, imagen) {
         this.code = code;
         this.value = value;
