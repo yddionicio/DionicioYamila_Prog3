@@ -20,7 +20,7 @@ export class Carta {
         const div = document.createElement("div");
         div.className = "carta";
         div.style.maxWidth = "200px";
-
+     
         const titulo = document.createElement("h3");
         titulo.textContent = `${this.value} de ${this.suit}`;
 
@@ -28,13 +28,13 @@ export class Carta {
         codigo.textContent = `Código: ${this.code}`;
 
         const img = document.createElement("img");
-        img.src = this.imagen;
+        img.src = this.imagen; 
         img.alt = `Carta ${this.value} de ${this.suit}`;
         img.style.maxWidth = "150px";
 
         const url = document.createElement("a");
-        url.href = this.imagen;
-        url.target = "_blank";
+        url.href = this.imagen; 
+        url.target = "_blank"; 
         url.appendChild(img);
 
         div.appendChild(titulo);
@@ -51,14 +51,14 @@ export class Carta {
     }
 
 
-    static guardarCarta(carta) {
-        const cartasGuardadas =
-            JSON.parse(localStorage.getItem("cartasGuardadas")) || [];
-        cartasGuardadas.push(carta);
-        localStorage.setItem("cartasGuardadas", JSON.stringify(cartasGuardadas)); //persistencia para que viva en el codigo
-        console.log("las cartas fueron cargadas");
-        console.log(cartasGuardadas);
-    }
+     static guardarCarta(carta) {
+    const cartasGuardadas =
+      JSON.parse(localStorage.getItem("cartasGuardadas")) || [];
+    cartasGuardadas.push(carta);
+    localStorage.setItem("cartasGuardadas", JSON.stringify(cartasGuardadas)); //persistencia para que viva en el codigo
+    console.log("las cartas fueron cargadas");
+    console.log(cartasGuardadas);
+  }
 
 
 }
