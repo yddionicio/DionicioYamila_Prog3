@@ -54,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function siguientePagina() {
     if (paginaActual * cartasPorPagina < totalDeCartas) {
         paginaActual++;
-        cargarCartas();
-    } else {
+        cargarCartas(); 
         alert("esta es la ultima pagina");
     }
 }
