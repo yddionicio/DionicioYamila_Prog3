@@ -11,17 +11,9 @@ function GuardadosHTML(criterio = null) {
     let cartas = JSON.parse(datos);
 
     if (criterio === "nombre") {
-        cartas.sort((a, b) => {
-            const valA = a.value || a.nombre || "";
-            const valB = b.value || b.nombre || "";
-            return valA.localeCompare(valB);
-        });
+        cartas.sort((a, b) => a.value.localeCompare(b.value));
     } else if (criterio === "precio") {
-        cartas.sort((a, b) => {
-            const suitA = a.suit || a.palo || "";
-            const suitB = b.suit || b.palo || "";
-            return suitA.localeCompare(suitB);
-        });
+        cartas.sort((a, b) => a.suit.localeCompare(b.suit));
     }
 
     cartas.forEach((carta) => {

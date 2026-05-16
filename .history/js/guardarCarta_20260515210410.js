@@ -10,19 +10,19 @@ function GuardadosHTML(criterio = null) {
 
     let cartas = JSON.parse(datos);
 
-    if (criterio === "nombre") {
-        cartas.sort((a, b) => {
-            const valA = a.value || a.nombre || "";
-            const valB = b.value || b.nombre || "";
-            return valA.localeCompare(valB);
-        });
-    } else if (criterio === "precio") {
-        cartas.sort((a, b) => {
-            const suitA = a.suit || a.palo || "";
-            const suitB = b.suit || b.palo || "";
-            return suitA.localeCompare(suitB);
-        });
-    }
+if (criterio === "nombre") {
+    cartas.sort((a, b) => {
+      const valA = a.value || a.nombre || "";
+      const valB = b.value || b.nombre || "";
+      return valA.localeCompare(valB);
+    });
+  } else if (criterio === "precio") {
+    cartas.sort((a, b) => {
+      const suitA = a.suit || a.palo || "";
+      const suitB = b.suit || b.palo || "";
+      return suitA.localeCompare(suitB);
+    });
+  }
 
     cartas.forEach((carta) => {
         const urlImagen = carta.image || carta.imagen || carta.urlImagen;
