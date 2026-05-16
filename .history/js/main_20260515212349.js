@@ -1,6 +1,6 @@
 import { Carta } from "./Carta.js";
 
-
+let historialCartas = [];
 async function cargarCartas() {
     const listaCarta = [];
 
@@ -51,14 +51,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
-function paginaSiguiente(){
-    paginaActual++;
-    cargarCartas(paginaActual);
+function siguientePagina() {
+    if (paginaActual * cartasPorPagina < totalDeCartas) {
+        paginaActual++;
+        cargarCartas();
+    } else {
+        alert("esta es la ultima pagina");
+    }
 }
 
-function paginaAnterior(){
-    paginaActual--;
-    cargarCartas(paginaActual);
+
+async function paginaAnterior() {
+    if (paginaActual > 1) {
+        paginaActual--;
+        
+        try {
+            await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/`);
+            cargarCartas();
+        } catch (error) {
+            alert("Error al retroceder página");
+        }
+        
+    } else {
+        alert("no podes retroceder mas de la 1ra pagina");
+    }
 }
+
+

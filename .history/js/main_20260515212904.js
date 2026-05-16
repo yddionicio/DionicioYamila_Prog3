@@ -1,5 +1,7 @@
 import { Carta } from "./Carta.js";
 
+const paginas = 6;
+let paginaActual = 1;
 
 async function cargarCartas() {
     const listaCarta = [];

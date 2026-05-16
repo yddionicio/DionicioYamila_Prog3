@@ -1,5 +1,6 @@
 import { Carta } from "./Carta.js";
 
+let historialCartas = [];
 
 async function cargarCartas() {
     const listaCarta = [];
@@ -50,15 +51,37 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("siguiente").addEventListener("click", siguientePagina);
 });
 
+async function siguientePagina() {
+    // Calculamos el total de páginas posibles (52 cartas / 6 por página = 9 páginas)
+    const totalPaginas = Math.ceil(totalDeCartas / cartasPorPagina); 
 
-
-
-function paginaSiguiente(){
-    paginaActual++;
-    cargarCartas(paginaActual);
+    if (paginaActual < totalPaginas) {
+        paginaActual++;
+        
+        // Si la página que queremos ver YA está en el historial, la cargamos directo
+        if (historialCartas[paginaActual - 1]) {
+            renderizarCartasLocales(historialCartas[paginaActual - 1]);
+        } else {
+            // Si es una página nueva, llamamos a la API normalmente
+            await cargarCartas(paginaActual);
+        }
+    } else {
+        alert("Esta es la última página");
+    }
 }
 
-function paginaAnterior(){
-    paginaActual--;
-    cargarCartas(paginaActual);
+function paginaAnterior() {
+    if (paginaActual > 1) {
+        paginaActual--;
+        
+        // Al ir atrás, el 100% de las veces las cartas ya existen en el historial.
+        // Las mostramos desde la memoria de JS, sin tocar la API ni mezclar el mazo.
+        const cartasDeLaPagina = historialCartas[paginaActual - 1];
+        renderizarCartasLocales(cartasDeLaPagina);
+        
+    } else {
+        alert("No podés retroceder más de la 1ra página");
+    }
 }
+
+

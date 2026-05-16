@@ -51,14 +51,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function siguientePagina() {
+    if (paginaActual * cartasPorPagina < totalDeCartas) {
+        paginaActual++;
+        cargarCartas();
+    } else {
+        alert("esta es la ultima pagina");
+    }
+}
+
+
+async function paginaAnterior() {
+    if (paginaActual > 1) {
+        paginaActual--;
+        
+        try {
+            await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/`);
+            cargarCartas();
+        } catch (error) {
+            alert("Error al retroceder página");
+        }
+        
+    } else {
+        alert("no podes retroceder mas de la 1ra pagina");
+    }
+}
 
 
 function paginaSiguiente(){
     paginaActual++;
-    cargarCartas(paginaActual);
-}
-
-function paginaAnterior(){
-    paginaActual--;
     cargarCartas(paginaActual);
 }

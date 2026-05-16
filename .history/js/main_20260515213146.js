@@ -1,5 +1,7 @@
 import { Carta } from "./Carta.js";
 
+const paginas = 6;
+let paginaActual = 1;
 
 async function cargarCartas() {
     const listaCarta = [];
@@ -7,7 +9,7 @@ async function cargarCartas() {
     for (let i = 1; i <= 6; i++) {
         listaCarta.push(
            
-            fetch(`https://deckofcardsapi.com/api/deck/new/draw/?count=6`)
+            fetch(`https://deckofcardsapi.com/api/deck/new/draw/?count=${paginas}`)
                 .then((res) => {
                     if (res.status != 200) {
                         throw new Error(`No se cargó la carta ${i}`);
@@ -33,7 +35,7 @@ async function cargarCartas() {
                 dato.image 
             );
         });
-        cartas.forEach((carta) => {
+        cartas.cards.forEach((carta) => {
             const elemento = carta.createHtmlElement();
             contenedor.appendChild(elemento);
         });
